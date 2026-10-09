@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "appTitle": "Species Catalog",
+  "actionToggleTheme": "Toggle theme",
+  "taxonNumber": "No. {number}",
+  "actionBack" : "Back",
+  "actionToggleLanguage" : "Switch language",
+  "rankKingdom" : "Kingdom",
+  "rankPhylum" : "Phylum",
+  "rankClass" : "Class",
+  "rankOrder" : "Order",
+  "rankFamily" : "Family",
+  "rankGenus" : "Genus",
+  "rankSpecies" : "Species"
+}

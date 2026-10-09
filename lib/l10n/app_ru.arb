@@ -1,0 +1,15 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Каталог видов",
+  "actionToggleTheme": "Переключить тему",
+  "taxonNumber": "No. {number}",
+  "actionBack" : "Назад",
+  "actionToggleLanguage" : "Переключить язык",
+  "rankKingdom" : "Царство",
+  "rankPhylum" : "Тип",
+  "rankClass" : "Класс",
+  "rankOrder" : "Отряд",
+  "rankFamily" : "Семейство",
+  "rankGenus" : "Род",
+  "rankSpecies" : "Вид"
+}
