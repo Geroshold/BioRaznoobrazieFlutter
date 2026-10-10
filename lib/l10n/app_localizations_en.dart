@@ -46,4 +46,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rankSpecies => 'Species';
+
+  @override
+  String get sectionDescription => 'Description';
+
+  @override
+  String get sectionChildren => 'Children';
+
+  @override
+  String get detailNotFound => 'This taxon was not found';
+
+  @override
+  String get pageNotFound => 'Page was not found';
 }

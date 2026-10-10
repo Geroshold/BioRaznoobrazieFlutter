@@ -11,5 +11,9 @@
   "rankOrder" : "Отряд",
   "rankFamily" : "Семейство",
   "rankGenus" : "Род",
-  "rankSpecies" : "Вид"
+  "rankSpecies" : "Вид",
+  "sectionDescription": "Описание",
+  "sectionChildren": "Дочерние таксоны",
+  "detailNotFound" : "Таксон не был найден",
+  "pageNotFound" : "Страница не найдена"
 }

@@ -1,4 +1,4 @@
-import 'package:my_catalog/features/domain/taxon_model.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 
 extension TaxonFormat on TaxonModel {
   String get displayName => _capitalize(scientificName);

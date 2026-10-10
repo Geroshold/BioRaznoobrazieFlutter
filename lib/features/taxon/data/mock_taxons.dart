@@ -1,5 +1,5 @@
-import 'package:my_catalog/features/domain/taxon_model.dart';
-import 'package:my_catalog/features/domain/taxon_rank.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_rank.dart';
 
 const List<TaxonModel> mockTaxons = [
   TaxonModel(

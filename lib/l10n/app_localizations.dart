@@ -169,6 +169,30 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Вид'**
   String get rankSpecies;
+
+  /// No description provided for @sectionDescription.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание'**
+  String get sectionDescription;
+
+  /// No description provided for @sectionChildren.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дочерние таксоны'**
+  String get sectionChildren;
+
+  /// No description provided for @detailNotFound.
+  ///
+  /// In ru, this message translates to:
+  /// **'Таксон не был найден'**
+  String get detailNotFound;
+
+  /// No description provided for @pageNotFound.
+  ///
+  /// In ru, this message translates to:
+  /// **'Страница не найдена'**
+  String get pageNotFound;
 }
 
 class _AppLocalizationsDelegate

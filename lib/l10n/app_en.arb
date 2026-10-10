@@ -11,5 +11,9 @@
   "rankOrder" : "Order",
   "rankFamily" : "Family",
   "rankGenus" : "Genus",
-  "rankSpecies" : "Species"
+  "rankSpecies" : "Species",
+  "sectionDescription" : "Description",
+  "sectionChildren" : "Children",
+  "detailNotFound" : "This taxon was not found",
+  "pageNotFound" : "Page was not found"
 }

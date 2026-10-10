@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/common/theme/app_colors.dart';
-import 'package:my_catalog/features/domain/taxon_rank.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_rank.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
 
 extension TaxonRankFormat on TaxonRank {

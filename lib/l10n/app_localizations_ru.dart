@@ -46,4 +46,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get rankSpecies => 'Вид';
+
+  @override
+  String get sectionDescription => 'Описание';
+
+  @override
+  String get sectionChildren => 'Дочерние таксоны';
+
+  @override
+  String get detailNotFound => 'Таксон не был найден';
+
+  @override
+  String get pageNotFound => 'Страница не найдена';
 }

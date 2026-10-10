@@ -1,4 +1,4 @@
-import 'package:my_catalog/features/domain/taxon_rank.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_rank.dart';
 
 final class TaxonModel {
   const TaxonModel({

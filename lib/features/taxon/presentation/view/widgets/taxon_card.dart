@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/features/domain/taxon_model.dart';
-import 'package:my_catalog/features/presentation/utils/taxon_format.dart';
-import 'package:my_catalog/features/presentation/view/widgets/card_surface.dart';
-import 'package:my_catalog/features/presentation/view/widgets/rank_chip.dart';
-import 'package:my_catalog/features/presentation/utils/taxon_rank_format.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_catalog/common/navigation/app_router.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
+import 'package:my_catalog/features/taxon/presentation/utils/taxon_format.dart';
+import 'package:my_catalog/features/taxon/presentation/view/widgets/card_surface.dart';
+import 'package:my_catalog/features/taxon/presentation/view/widgets/rank_chip.dart';
+import 'package:my_catalog/features/taxon/presentation/utils/taxon_rank_format.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
 
 class TaxonCard extends StatelessWidget {
@@ -16,6 +18,7 @@ class TaxonCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     return CardSurface(
+      onTap: () => context.push(AppRoutes.detail(taxon.key)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
