@@ -5,6 +5,7 @@ import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_cubit.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_state.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/taxon_card.dart';
+import 'package:my_catalog/features/taxon/presentation/view/widgets/search_field.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
 
 class TaxonChildrenScreen extends StatelessWidget {
@@ -29,18 +30,34 @@ class _TaxonChildrenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return AppScaffold(
-      body: BlocBuilder<TaxonListCubit, TaxonListState>(
-        builder: (context, state) => state.items.isEmpty
-            ? Center(child: Text(AppLocalizations.of(context).childrenEmpty))
-            : ListView.separated(
-                padding: const EdgeInsets.all(16),
-                itemCount: state.items.length,
-                separatorBuilder: (_, _) => const SizedBox(height: 12),
-                itemBuilder: (context, index) => TaxonCard(
-                  taxon: state.items[index],
-                ),
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: SearchField(
+              onChanged: context.read<TaxonListCubit>().search,
+            ),
+          ),
+          Expanded(
+            child: BlocBuilder<TaxonListCubit, TaxonListState>(
+              builder: (context, state) {
+                if (state.items.isEmpty) {
+                  return Center(child: Text(l10n.childrenEmpty));
+                }
+                return ListView.separated(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: state.items.length,
+                  separatorBuilder: (_, _) => const SizedBox(height: 12),
+                  itemBuilder: (context, index) =>
+                      TaxonCard(taxon: state.items[index]),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

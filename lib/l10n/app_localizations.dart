@@ -211,6 +211,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Дочерних таксонов нет'**
   String get childrenEmpty;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск по имени'**
+  String get searchHint;
+
+  /// No description provided for @actionClearSearch.
+  ///
+  /// In ru, this message translates to:
+  /// **'Очистить поиск'**
+  String get actionClearSearch;
 }
 
 class _AppLocalizationsDelegate

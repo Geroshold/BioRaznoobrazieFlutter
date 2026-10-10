@@ -67,4 +67,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get childrenEmpty => 'Дочерних таксонов нет';
+
+  @override
+  String get searchHint => 'Поиск по имени';
+
+  @override
+  String get actionClearSearch => 'Очистить поиск';
 }

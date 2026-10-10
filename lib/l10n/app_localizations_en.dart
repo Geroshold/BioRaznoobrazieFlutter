@@ -67,4 +67,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get childrenEmpty => 'No child taxons';
+
+  @override
+  String get searchHint => 'Search by name';
+
+  @override
+  String get actionClearSearch => 'Clear search';
 }

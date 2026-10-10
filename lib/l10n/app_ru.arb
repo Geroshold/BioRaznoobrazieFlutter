@@ -18,5 +18,7 @@
   "pageNotFound" : "Страница не найдена",
   "detailCanonicalName": "Каноническое название",
   "detailDescendants": "Количество потомков",
-  "childrenEmpty": "Дочерних таксонов нет"
+  "childrenEmpty": "Дочерних таксонов нет",
+  "searchHint": "Поиск по имени",
+  "actionClearSearch": "Очистить поиск"
 }
