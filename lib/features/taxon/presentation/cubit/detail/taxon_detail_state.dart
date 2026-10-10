@@ -27,6 +27,8 @@ class TaxonDetailUi {
   final String name;
   final String number;
   final TaxonRank rank;
+  final String? canonicalName;
+  final int numDescendants;  
   final String? description;
 
   const TaxonDetailUi({
@@ -34,6 +36,8 @@ class TaxonDetailUi {
     required this.name,
     required this.number,
     required this.rank,
+    this.canonicalName,
+    required this.numDescendants,
     this.description,
   });
 }

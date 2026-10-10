@@ -58,4 +58,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pageNotFound => 'Page was not found';
+
+  @override
+  String get detailCanonicalName => 'Canonical name';
+
+  @override
+  String get detailDescendants => 'Descendants';
 }

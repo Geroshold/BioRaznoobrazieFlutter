@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/widgets/app_scaffold.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/section.dart';
@@ -8,7 +6,9 @@ import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/detail/taxon_detail_cubit.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/detail/taxon_detail_state.dart';
 import 'package:my_catalog/features/taxon/presentation/utils/taxon_rank_format.dart';
+import 'package:my_catalog/features/taxon/presentation/utils/taxon_format.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/rank_chip.dart';
+import 'package:my_catalog/features/taxon/presentation/view/widgets/taxon_fact_row.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
 
 class TaxonDetailScreen extends StatelessWidget {
@@ -51,6 +51,7 @@ class _DetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
+    final locale = Localizations.localeOf(context).toString();
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -67,12 +68,27 @@ class _DetailContent extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
+
               Text(taxon.name, style: theme.textTheme.headlineMedium),
               const SizedBox(height: 6),
+
               RankChip(
                 label: taxon.rank.label(l10n),
                 color: taxon.rank.color,
               ),
+
+              const SizedBox(height: 16),
+              TaxonFactRow(
+                label: l10n.detailCanonicalName,
+                value: taxon.canonicalName!,
+              ),
+
+              const SizedBox(height: 8),
+              TaxonFactRow(
+                label: l10n.detailDescendants,
+                value: formatNumDescendants(taxon.numDescendants, locale),
+              ),
+
               if (taxon.description != null) ...[
                 Section(title: l10n.sectionDescription),
                 Text(
@@ -80,11 +96,13 @@ class _DetailContent extends StatelessWidget {
                   style: theme.textTheme.bodyLarge,
                 ),
               ],
+
               if (hasChildren) ...[
                 const SizedBox(height: 24),
                 Center(
                   child: FilledButton(
-                    onPressed: () => context.push(AppRoutes.children(taxon.key)),
+                    onPressed: () {
+                    },
                     child: Text(l10n.sectionChildren),
                   ),
                 ),

@@ -26,6 +26,8 @@ class TaxonDetailCubit extends Cubit<TaxonDetailState> {
         name: taxon.displayName,
         number: taxon.displayNumber,
         rank: taxon.rank,
+        canonicalName: taxon.displayCanonicalName,
+        numDescendants: taxon.numDescendants,
         description: (description?.isEmpty ?? true) ? null : description,
       ),
       hasChildren: taxon.numDescendants > 0,

@@ -4,12 +4,12 @@ import 'package:my_catalog/features/taxon/domain/taxon_rank.dart';
 const List<TaxonModel> mockTaxons = [
   TaxonModel(
     key: 0,
-    scientificName: "incertae sedis",
+    scientificName: "Incertae sedis",
     canonicalName: "incertae sedis",
     rank: TaxonRank.kingdom,
     parentKey: null,
     numDescendants: 3613,
-    kingdom: "incertae sedis",
+    kingdom: "Incertae sedis",
     phylum: null,
     description: null,
   ),

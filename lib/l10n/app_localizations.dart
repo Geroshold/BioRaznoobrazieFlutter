@@ -193,6 +193,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Страница не найдена'**
   String get pageNotFound;
+
+  /// No description provided for @detailCanonicalName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Каноническое название'**
+  String get detailCanonicalName;
+
+  /// No description provided for @detailDescendants.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество потомков'**
+  String get detailDescendants;
 }
 
 class _AppLocalizationsDelegate

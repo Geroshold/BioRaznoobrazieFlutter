@@ -15,5 +15,7 @@
   "sectionDescription": "Описание",
   "sectionChildren": "Дочерние таксоны",
   "detailNotFound" : "Таксон не был найден",
-  "pageNotFound" : "Страница не найдена"
+  "pageNotFound" : "Страница не найдена",
+  "detailCanonicalName": "Каноническое название",
+  "detailDescendants": "Количество потомков"
 }

@@ -58,4 +58,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get pageNotFound => 'Страница не найдена';
+
+  @override
+  String get detailCanonicalName => 'Каноническое название';
+
+  @override
+  String get detailDescendants => 'Количество потомков';
 }
