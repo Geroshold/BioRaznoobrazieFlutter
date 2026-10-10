@@ -205,6 +205,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Количество потомков'**
   String get detailDescendants;
+
+  /// No description provided for @childrenEmpty.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дочерних таксонов нет'**
+  String get childrenEmpty;
 }
 
 class _AppLocalizationsDelegate

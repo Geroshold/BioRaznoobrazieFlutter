@@ -5,6 +5,7 @@ import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_cubit.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_state.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/taxon_card.dart';
+import 'package:my_catalog/l10n/app_localizations.dart';
 
 class TaxonChildrenScreen extends StatelessWidget {
   const TaxonChildrenScreen({super.key, required this.parentKey});
@@ -31,7 +32,7 @@ class _TaxonChildrenBody extends StatelessWidget {
     return AppScaffold(
       body: BlocBuilder<TaxonListCubit, TaxonListState>(
         builder: (context, state) => state.items.isEmpty
-            ? const Center(child: Text('Дочерних таксонов нет'))
+            ? Center(child: Text(AppLocalizations.of(context).childrenEmpty))
             : ListView.separated(
                 padding: const EdgeInsets.all(16),
                 itemCount: state.items.length,

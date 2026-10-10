@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/widgets/app_scaffold.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/section.dart';
@@ -101,8 +103,7 @@ class _DetailContent extends StatelessWidget {
                 const SizedBox(height: 24),
                 Center(
                   child: FilledButton(
-                    onPressed: () {
-                    },
+                    onPressed: () => context.push(AppRoutes.children(taxon.key)),   // 👈
                     child: Text(l10n.sectionChildren),
                   ),
                 ),

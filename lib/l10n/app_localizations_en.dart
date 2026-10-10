@@ -64,4 +64,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get detailDescendants => 'Descendants';
+
+  @override
+  String get childrenEmpty => 'No child taxons';
 }

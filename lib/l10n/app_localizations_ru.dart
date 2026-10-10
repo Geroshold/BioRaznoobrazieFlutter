@@ -64,4 +64,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get detailDescendants => 'Количество потомков';
+
+  @override
+  String get childrenEmpty => 'Дочерних таксонов нет';
 }

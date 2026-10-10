@@ -1,5 +1,7 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_catalog/common/locale/locale_cubit.dart';
 import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:my_catalog/common/theme/app_theme.dart';
 import 'package:my_catalog/common/theme/theme_cubit.dart';
@@ -28,19 +30,28 @@ class App extends StatelessWidget {
                 TaxonListCubit(context.read<ITaxonRepository>())..load(),
           ),
           BlocProvider(create: (_) => ThemeCubit()),
+          BlocProvider(                                          // 👈 1
+            create: (_) => LocaleCubit(
+              AppLocalizations.supportedLocales.toList(),
+              system: locale ?? PlatformDispatcher.instance.locale,
+            ),
+          ),
         ],
-        child: BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, themeMode) => MaterialApp.router(
-            routerConfig: AppRouter.router,
-            onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.light,
-            darkTheme: AppTheme.dark,
-            themeMode: themeMode,
-            locale: locale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-          )
+        child: BlocBuilder<LocaleCubit, Locale>(                // 👈 2
+          builder: (context, locale) => BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, themeMode) => MaterialApp.router(
+              routerConfig: AppRouter.router,
+              onGenerateTitle: (context) =>
+                  AppLocalizations.of(context).appTitle,
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.light,
+              darkTheme: AppTheme.dark,
+              themeMode: themeMode,
+              locale: locale,                                    // 👈 3
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+            ),
+          ),
         ),
       ),
     );

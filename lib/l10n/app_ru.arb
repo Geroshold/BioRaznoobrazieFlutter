@@ -17,5 +17,6 @@
   "detailNotFound" : "Таксон не был найден",
   "pageNotFound" : "Страница не найдена",
   "detailCanonicalName": "Каноническое название",
-  "detailDescendants": "Количество потомков"
+  "detailDescendants": "Количество потомков",
+  "childrenEmpty": "Дочерних таксонов нет"
 }

@@ -17,5 +17,6 @@
   "detailNotFound" : "This taxon was not found",
   "pageNotFound" : "Page was not found",
   "detailCanonicalName": "Canonical name",
-  "detailDescendants": "Descendants"
+  "detailDescendants": "Descendants",
+  "childrenEmpty": "No child taxons"
 }
