@@ -11,7 +11,7 @@ class CardSurface extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       elevation: 1,
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.surfaceContainer,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,

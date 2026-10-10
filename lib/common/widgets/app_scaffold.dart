@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/common/widgets/theme_toggle_button.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
+
 class AppScaffold extends StatelessWidget {
   const AppScaffold({super.key, required this.body, this.actions = const []});
 
@@ -11,7 +13,7 @@ class AppScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).appTitle),
-        actions: actions,
+        actions: [...actions, const ThemeToggleButton()],
       ),
       body: body,
     );
