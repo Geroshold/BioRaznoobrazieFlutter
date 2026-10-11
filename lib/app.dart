@@ -11,9 +11,7 @@ import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_cub
 import 'package:my_catalog/l10n/app_localizations.dart';
 
 class App extends StatelessWidget {
-  const App({super.key, this.locale});
-
-  final Locale? locale;
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +28,14 @@ class App extends StatelessWidget {
                 TaxonListCubit(context.read<ITaxonRepository>())..load(),
           ),
           BlocProvider(create: (_) => ThemeCubit()),
-          BlocProvider(                                          // 👈 1
+          BlocProvider(
             create: (_) => LocaleCubit(
               AppLocalizations.supportedLocales.toList(),
-              system: locale ?? PlatformDispatcher.instance.locale,
+              system: PlatformDispatcher.instance.locale,
             ),
           ),
         ],
-        child: BlocBuilder<LocaleCubit, Locale>(                // 👈 2
+        child: BlocBuilder<LocaleCubit, Locale>(
           builder: (context, locale) => BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, themeMode) => MaterialApp.router(
               routerConfig: AppRouter.router,
@@ -47,7 +45,7 @@ class App extends StatelessWidget {
               theme: AppTheme.light,
               darkTheme: AppTheme.dark,
               themeMode: themeMode,
-              locale: locale,                                    // 👈 3
+              locale: locale,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
             ),

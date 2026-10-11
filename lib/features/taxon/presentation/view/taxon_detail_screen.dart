@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/widgets/app_scaffold.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/section.dart';
 import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/detail/taxon_detail_cubit.dart';
@@ -34,8 +35,8 @@ class TaxonDetailScreen extends StatelessWidget {
             TaxonDetailNotFound() => Center(
               child: Text(AppLocalizations.of(context).detailNotFound),
             ),
-            TaxonDetailLoaded(:final taxon, :final hasChildren) =>
-              _DetailContent(taxon: taxon, hasChildren: hasChildren),
+            TaxonDetailLoaded(:final taxon) =>
+              _DetailContent(taxon: taxon),
           },
         ),
       ),
@@ -44,16 +45,16 @@ class TaxonDetailScreen extends StatelessWidget {
 }
 
 class _DetailContent extends StatelessWidget {
-  const _DetailContent({required this.taxon, required this.hasChildren});
+  const _DetailContent({required this.taxon});
 
-  final TaxonDetailUi taxon;
-  final bool hasChildren;
+  final TaxonModel taxon;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context).toString();
+    final hasChildren = taxon.numDescendants > 0;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -64,14 +65,14 @@ class _DetailContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.taxonNumber(taxon.number),
+                l10n.taxonNumber(taxon.displayNumber),
                 style: theme.textTheme.labelLarge?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
               const SizedBox(height: 6),
 
-              Text(taxon.name, style: theme.textTheme.headlineMedium),
+              Text(taxon.displayName, style: theme.textTheme.headlineMedium),
               const SizedBox(height: 6),
 
               RankChip(
@@ -82,7 +83,7 @@ class _DetailContent extends StatelessWidget {
               const SizedBox(height: 16),
               TaxonFactRow(
                 label: l10n.detailCanonicalName,
-                value: taxon.canonicalName!,
+                value: taxon.displayCanonicalName!,
               ),
 
               const SizedBox(height: 8),
@@ -103,7 +104,7 @@ class _DetailContent extends StatelessWidget {
                 const SizedBox(height: 24),
                 Center(
                   child: FilledButton(
-                    onPressed: () => context.push(AppRoutes.children(taxon.key)),   // 👈
+                    onPressed: () => context.push(AppRoutes.children(taxon.key)),
                     child: Text(l10n.sectionChildren),
                   ),
                 ),

@@ -19,8 +19,8 @@ class TaxonFactRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 200,
+          Flexible(
+            flex: 1,
             child: Text(
               label,
               style: theme.textTheme.bodyMedium?.copyWith(
@@ -29,6 +29,7 @@ class TaxonFactRow extends StatelessWidget {
             ),
           ),
           Expanded(
+            flex: 2,
             child: Text(
               value,
               style: theme.textTheme.bodyMedium,
