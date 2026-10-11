@@ -44,6 +44,9 @@ class _TaxonChildrenBody extends StatelessWidget {
           Expanded(
             child: BlocBuilder<TaxonListCubit, TaxonListState>(
               builder: (context, state) {
+                if (state.items.isEmpty && state.query.isNotEmpty) {
+                  return Center(child: Text(l10n.searchEmpty));
+                }
                 if (state.items.isEmpty) {
                   return Center(child: Text(l10n.childrenEmpty));
                 }

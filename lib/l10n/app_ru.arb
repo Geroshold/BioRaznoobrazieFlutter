@@ -20,5 +20,6 @@
   "detailDescendants": "Количество потомков",
   "childrenEmpty": "Дочерних таксонов нет",
   "searchHint": "Поиск по имени",
-  "actionClearSearch": "Очистить поиск"
+  "actionClearSearch": "Очистить поиск",
+  "searchEmpty" : "Ничего не найдено"
 }

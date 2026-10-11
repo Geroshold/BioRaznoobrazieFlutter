@@ -18,7 +18,8 @@
   "pageNotFound" : "Page was not found",
   "detailCanonicalName": "Canonical name",
   "detailDescendants": "Descendants",
-  "childrenEmpty": "No child taxons",
-  "searchHint": "Search by name",
-  "actionClearSearch": "Clear search"
+  "childrenEmpty" : "No child taxons",
+  "searchHint" : "Search by name",
+  "actionClearSearch" : "Clear search",
+  "searchEmpty" : "Nothing found"
 }

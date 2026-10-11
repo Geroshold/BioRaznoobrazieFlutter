@@ -73,4 +73,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get actionClearSearch => 'Очистить поиск';
+
+  @override
+  String get searchEmpty => 'Ничего не найдено';
 }

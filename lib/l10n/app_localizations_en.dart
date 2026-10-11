@@ -73,4 +73,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get actionClearSearch => 'Clear search';
+
+  @override
+  String get searchEmpty => 'Nothing found';
 }

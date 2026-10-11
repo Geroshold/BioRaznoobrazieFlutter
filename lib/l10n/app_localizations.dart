@@ -223,6 +223,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Очистить поиск'**
   String get actionClearSearch;
+
+  /// No description provided for @searchEmpty.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ничего не найдено'**
+  String get searchEmpty;
 }
 
 class _AppLocalizationsDelegate
