@@ -1,4 +1,6 @@
+import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_state.dart';
 
@@ -7,6 +9,8 @@ class TaxonListCubit extends Cubit<TaxonListState> {
 
   final ITaxonRepository _repository;
   final int? parentKey;
+
+  CancelableOperation<List<TaxonModel>>? _searchOperation;
 
   Future<void> load() async {
     emit(const TaxonListLoading());
@@ -23,9 +27,16 @@ class TaxonListCubit extends Cubit<TaxonListState> {
 
     emit(TaxonListLoaded(query: query, items: current.items));
 
-    final items = await _repository.search(query, parentKey: parentKey);
+    _searchOperation?.cancel();
+    _searchOperation = CancelableOperation.fromFuture(
+      _repository.search(query, parentKey: parentKey),
+    );
+
+    final items = await _searchOperation!.valueOrCancellation();
 
     if (isClosed) return;
+    if (items == null) return;
+
     emit(TaxonListLoaded(query: query, items: items));
   }
 }
