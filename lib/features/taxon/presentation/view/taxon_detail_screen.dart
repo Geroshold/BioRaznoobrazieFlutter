@@ -78,6 +78,7 @@ class _DetailContent extends StatelessWidget {
               RankChip(
                 label: taxon.rank.label(l10n),
                 color: taxon.rank.color,
+                onColor: taxon.rank.onColor
               ),
 
               const SizedBox(height: 16),

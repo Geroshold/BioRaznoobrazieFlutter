@@ -38,7 +38,7 @@ class TaxonCard extends StatelessWidget {
               const SizedBox(height: 6),
               Text(taxon.displayName, style: theme.textTheme.titleMedium),
               const SizedBox(height: 6),
-              RankChip(label: taxon.rank.label(l10n), color: taxon.rank.color,),
+              RankChip(label: taxon.rank.label(l10n), color: taxon.rank.color, onColor: taxon.rank.onColor),
             ],
           ),
         ),

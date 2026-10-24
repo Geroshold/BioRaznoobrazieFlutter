@@ -31,6 +31,7 @@ class TaxonListScreen extends StatelessWidget {
                   items.isEmpty && query.isNotEmpty
                     ? Center(child: Text(l10n.searchEmpty))
                     : ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                       itemCount: items.length,
                       itemBuilder: (context, index) => TaxonCard(taxon: items[index]),
                       separatorBuilder: (_, _) => const SizedBox(height: 12),

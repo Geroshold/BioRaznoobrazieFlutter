@@ -15,12 +15,22 @@ extension TaxonRankFormat on TaxonRank {
   };
   
   Color get color => switch (this) {
-    TaxonRank.kingdom => AppColors.typeKingdom,
-    TaxonRank.phylum => AppColors.typePhylum,
-    TaxonRank.klass => AppColors.typeKlass,
-    TaxonRank.order => AppColors.typeOrder,
-    TaxonRank.family => AppColors.typeFamily,
-    TaxonRank.genus => AppColors.typeGenus,
-    TaxonRank.species => AppColors.typeSpecies
+    TaxonRank.kingdom => AppColors.rankKingdomBg,
+    TaxonRank.phylum  => AppColors.rankPhylumBg,
+    TaxonRank.klass   => AppColors.rankKlassBg,
+    TaxonRank.order   => AppColors.rankOrderBg,
+    TaxonRank.family  => AppColors.rankFamilyBg,
+    TaxonRank.genus   => AppColors.rankGenusBg,
+    TaxonRank.species => AppColors.rankSpeciesBg
+  };
+
+  Color get onColor => switch (this) {
+    TaxonRank.kingdom => AppColors.rankKingdomFg,
+    TaxonRank.phylum  => AppColors.rankPhylumFg,
+    TaxonRank.klass   => AppColors.rankKlassFg,
+    TaxonRank.order   => AppColors.rankOrderFg,
+    TaxonRank.family  => AppColors.rankFamilyFg,
+    TaxonRank.genus   => AppColors.rankGenusFg,
+    TaxonRank.species => AppColors.rankSpeciesFg,
   };
 }
