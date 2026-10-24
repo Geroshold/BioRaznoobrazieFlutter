@@ -43,20 +43,22 @@ class _TaxonChildrenBody extends StatelessWidget {
           ),
           Expanded(
             child: BlocBuilder<TaxonListCubit, TaxonListState>(
-              builder: (context, state) {
-                if (state.items.isEmpty && state.query.isNotEmpty) {
-                  return Center(child: Text(l10n.searchEmpty));
-                }
-                if (state.items.isEmpty) {
-                  return Center(child: Text(l10n.childrenEmpty));
-                }
-                return ListView.separated(
-                  padding: const EdgeInsets.all(16),
-                  itemCount: state.items.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 12),
-                  itemBuilder: (context, index) =>
-                      TaxonCard(taxon: state.items[index]),
-                );
+              builder: (context, state) => switch(state) {
+                TaxonListLoading() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                TaxonListLoaded(:final items, :final query) =>
+                  items.isEmpty && query.isNotEmpty
+                    ? Center(child: Text(l10n.searchEmpty))
+                    : items.isEmpty
+                      ? Center(child: Text(l10n.childrenEmpty))
+                      : ListView.separated(
+                        padding: const EdgeInsets.all(16),
+                        itemCount: items.length,               
+                        separatorBuilder: (_, _) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) =>
+                          TaxonCard(taxon: items[index]),
+                ),
               },
             ),
           ),

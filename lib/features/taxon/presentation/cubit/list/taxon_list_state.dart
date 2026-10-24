@@ -1,11 +1,16 @@
 import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 
-final class TaxonListState {
-  const TaxonListState({this.query = '', this.items = const[]});
+sealed class TaxonListState {
+  const TaxonListState();
+}
+
+final class TaxonListLoading extends TaxonListState {
+  const TaxonListLoading();
+}
+
+final class TaxonListLoaded extends TaxonListState {
+  const TaxonListLoaded({required this.query, required this.items});
 
   final String query;
   final List<TaxonModel> items;
-
-  TaxonListState copyWith({String? query, List<TaxonModel>? items}) =>
-      TaxonListState(query: query ?? this.query, items: items ?? this.items);
 }
