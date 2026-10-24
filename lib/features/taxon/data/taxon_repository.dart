@@ -19,4 +19,18 @@ final class TaxonRepository implements ITaxonRepository {
   @override
   Future<List<TaxonModel>> getChildren(int parentKey) async =>
     mockTaxons.where((t) => t.parentKey == parentKey).toList();
+
+  @override
+  Future<List<TaxonModel>> search(String query, {int? parentKey}) async {
+    final base = parentKey == null
+      ? mockTaxons
+      : mockTaxons.where((t) => t.parentKey == parentKey).toList();
+
+    final needle = query.trim().toLowerCase();
+    if (needle.isEmpty) return base;
+
+    return base.where((t) =>
+      t.scientificName.toLowerCase().contains(needle) || (t.canonicalName?.toLowerCase().contains(needle) ?? false)
+    ).toList();
+  }
 }

@@ -4,4 +4,5 @@ abstract interface class ITaxonRepository{
   Future<List<TaxonModel>> getTaxons();
   Future<TaxonModel?> getTaxon(int key);
   Future<List<TaxonModel>> getChildren(int parentKey);
+  Future<List<TaxonModel>> search(String query, {int? parentKey});
 }
