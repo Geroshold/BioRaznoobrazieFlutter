@@ -83,7 +83,7 @@ class _DetailContent extends StatelessWidget {
               const SizedBox(height: 16),
               TaxonFactRow(
                 label: l10n.detailCanonicalName,
-                value: taxon.displayCanonicalName!,
+                value: taxon.displayCanonicalName,
               ),
 
               const SizedBox(height: 8),
