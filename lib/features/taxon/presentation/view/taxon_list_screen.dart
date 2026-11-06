@@ -38,17 +38,65 @@ class TaxonListScreen extends StatelessWidget {
                 TaxonListLoaded(:final items) when items.isEmpty => Center(
                   child: Text(l10n.searchEmpty),
                 ),
-                TaxonListLoaded(:final items) => ListView.separated(
-                      padding: const EdgeInsets.all(16),
-                      itemCount: items.length,
-                      itemBuilder: (context, index) => TaxonCard(taxon: items[index]),
-                      separatorBuilder: (_, _) => const SizedBox(height: 12),
-                ),
+                TaxonListLoaded() => _TaxonList(state: state),
               },
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _TaxonList extends StatefulWidget {
+  const _TaxonList({required this.state});
+
+  final TaxonListLoaded state;
+
+  @override
+  State<_TaxonList> createState() => _TaxonListState();
+}
+
+class _TaxonListState extends State<_TaxonList> {
+  late final ScrollController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController()..addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_controller.position.extentAfter < 240) {
+      context.read<TaxonListCubit>().fetchNextPage();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = widget.state;
+    final showFooter = state.isLoadingMore;
+
+    return ListView.separated(
+      controller: _controller,
+      padding: const EdgeInsets.all(16),
+      itemCount: state.items.length + (showFooter ? 1 : 0),
+      separatorBuilder: (_, _) => const SizedBox(height: 12),
+      itemBuilder: (context, index) {
+        if (index >= state.items.length) {
+          return const Padding(
+            padding: EdgeInsets.all(16),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+        return TaxonCard(taxon: state.items[index]);
+      },
     );
   }
 }

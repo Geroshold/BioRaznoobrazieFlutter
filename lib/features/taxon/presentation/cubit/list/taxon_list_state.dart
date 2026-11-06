@@ -11,9 +11,30 @@ final class TaxonListLoading extends TaxonListState {
 }
 
 final class TaxonListLoaded extends TaxonListState {
-  const TaxonListLoaded({required super.query, required this.items});
+  const TaxonListLoaded({
+    required super.query,
+    required this.items,
+    this.isLoadingMore = false,
+    this.hasReachedMax = false,
+    });
 
   final List<TaxonModel> items;
+  final bool isLoadingMore;
+  final bool hasReachedMax;
+
+  TaxonListLoaded copyWith({
+    String? query,
+    List<TaxonModel>? items,
+    bool? isLoadingMore,
+    bool? hasReachedMax,
+  }) {
+    return TaxonListLoaded(
+      query: query ?? this.query,
+      items: items ?? this.items,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+    );
+  }
 }
 
 final class TaxonListFailure extends TaxonListState {
