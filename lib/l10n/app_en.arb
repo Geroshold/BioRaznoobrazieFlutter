@@ -21,5 +21,11 @@
   "childrenEmpty" : "No child taxons",
   "searchHint" : "Search by name",
   "actionClearSearch" : "Clear search",
-  "searchEmpty" : "Nothing found"
+  "searchEmpty" : "Nothing found",
+  "errorNoConnection": "No connection to the server. Check your internet",
+  "errorTimeout": "The server is taking too long to respond",
+  "errorNotFound": "This record does not exist",
+  "errorServer": "Server error ({code})",
+  "errorBadResponse": "The server sent an unexpected response",
+  "actionRetry": "Retry"
 }

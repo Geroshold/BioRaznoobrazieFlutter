@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/widgets/app_scaffold.dart';
+import 'package:my_catalog/common/widgets/load_error_view.dart';
 import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/section.dart';
 import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
@@ -34,6 +35,12 @@ class TaxonDetailScreen extends StatelessWidget {
             ),
             TaxonDetailNotFound() => Center(
               child: Text(AppLocalizations.of(context).detailNotFound),
+            ),
+            TaxonDetailFailure(:final error) => Center(
+              child: LoadErrorView(
+                error: error,
+                onRetry: () => context.read<TaxonDetailCubit>().load(),
+              ),
             ),
             TaxonDetailLoaded(:final taxon) =>
               _DetailContent(taxon: taxon),

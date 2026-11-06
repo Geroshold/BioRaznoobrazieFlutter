@@ -76,4 +76,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchEmpty => 'Nothing found';
+
+  @override
+  String get errorNoConnection =>
+      'No connection to the server. Check your internet';
+
+  @override
+  String get errorTimeout => 'The server is taking too long to respond';
+
+  @override
+  String get errorNotFound => 'This record does not exist';
+
+  @override
+  String errorServer(Object code) {
+    return 'Server error ($code)';
+  }
+
+  @override
+  String get errorBadResponse => 'The server sent an unexpected response';
+
+  @override
+  String get actionRetry => 'Retry';
 }

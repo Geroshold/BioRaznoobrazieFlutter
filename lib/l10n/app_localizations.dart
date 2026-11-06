@@ -229,6 +229,42 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ничего не найдено'**
   String get searchEmpty;
+
+  /// No description provided for @errorNoConnection.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нет связи с сервером. Проверьте интернет'**
+  String get errorNoConnection;
+
+  /// No description provided for @errorTimeout.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сервер долго не отвечает'**
+  String get errorTimeout;
+
+  /// No description provided for @errorNotFound.
+  ///
+  /// In ru, this message translates to:
+  /// **'Такой записи нет'**
+  String get errorNotFound;
+
+  /// No description provided for @errorServer.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка сервера ({code})'**
+  String errorServer(Object code);
+
+  /// No description provided for @errorBadResponse.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сервер прислал непонятный ответ'**
+  String get errorBadResponse;
+
+  /// No description provided for @actionRetry.
+  ///
+  /// In ru, this message translates to:
+  /// **'Повторить'**
+  String get actionRetry;
 }
 
 class _AppLocalizationsDelegate
