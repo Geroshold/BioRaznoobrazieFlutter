@@ -24,17 +24,6 @@ final class TaxonApi {
     return TaxonPageDto.fromJson(json);
   }
 
-  Future<TaxonPageDto> getTaxonPage({
-    required int offset,
-    required int limit,
-  }) async {
-    final json = await _getJson(
-      '/species/search',
-      queryParameters: {'offset': offset, 'limit': limit},
-    );
-    return TaxonPageDto.fromJson(json);
-  }
-
   Future<TaxonDto> getTaxon(int id) async =>
       TaxonDto.fromJson(await _getJson('/species/$id'));
 

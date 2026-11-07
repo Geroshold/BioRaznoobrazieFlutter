@@ -16,9 +16,6 @@ extension TaxonDtoMapper on TaxonDto {
   );
 }
 
-String? mapDescription(List<DescriptionDto> descriptions) =>
-    descriptions.isEmpty ? null : descriptions.first.description;
-
 TaxonRank _parseTaxonRank(String raw) => TaxonRank.values.firstWhere(
   (r) => r.name.toUpperCase() == raw.toUpperCase(),
   orElse: () => TaxonRank.species,

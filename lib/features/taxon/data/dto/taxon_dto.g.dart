@@ -15,9 +15,6 @@ TaxonDto _$TaxonDtoFromJson(Map<String, dynamic> json) => TaxonDto(
   numDescendants: (json['numDescendants'] as num).toInt(),
   kingdom: json['kingdom'] as String?,
   phylum: json['phylum'] as String?,
-  descriptions: (json['descriptions'] as List<dynamic>?)
-      ?.map((e) => DescriptionDto.fromJson(e as Map<String, dynamic>))
-      .toList(),
 );
 
 Map<String, dynamic> _$TaxonDtoToJson(TaxonDto instance) => <String, dynamic>{
@@ -29,7 +26,6 @@ Map<String, dynamic> _$TaxonDtoToJson(TaxonDto instance) => <String, dynamic>{
   'numDescendants': instance.numDescendants,
   'kingdom': instance.kingdom,
   'phylum': instance.phylum,
-  'descriptions': instance.descriptions,
 };
 
 DescriptionDto _$DescriptionDtoFromJson(Map<String, dynamic> json) =>

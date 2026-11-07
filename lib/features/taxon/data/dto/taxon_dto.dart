@@ -13,7 +13,6 @@ class TaxonDto {
     required this.numDescendants,
     this.kingdom,
     this.phylum,
-    this.descriptions,
   });
 
   factory TaxonDto.fromJson(Map<String, dynamic> json) =>
@@ -23,16 +22,10 @@ class TaxonDto {
   final String scientificName;
   final String? canonicalName;
   final String rank;
-
-  @JsonKey(name: 'parentKey')
   final int? parentKey;
-
-  @JsonKey(name: 'numDescendants')
   final int numDescendants;
-
   final String? kingdom;
   final String? phylum;
-  final List<DescriptionDto>? descriptions;
 }
 
 @JsonSerializable()
