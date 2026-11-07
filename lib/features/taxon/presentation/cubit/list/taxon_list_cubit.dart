@@ -76,7 +76,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
       return;
     }
 
-    emit(currentState.copyWith(isLoadingMore: true));
+    emit(currentState.copyWith(isLoadingMore: true, loadMoreError: null));
 
     try {
       final nextItems = await _repository.getTaxons(
@@ -95,9 +95,9 @@ class TaxonListCubit extends Cubit<TaxonListState> {
           hasReachedMax: nextItems.length < _limit,
         ));
       }
-    } on LoadException {
+    } on LoadException catch (error) {
       if (isClosed) return;
-      emit(currentState.copyWith(isLoadingMore: false)); 
+      emit(currentState.copyWith(isLoadingMore: false, loadMoreError: error)); 
     }
   }
 }

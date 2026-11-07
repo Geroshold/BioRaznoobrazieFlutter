@@ -81,7 +81,7 @@ class _TaxonListState extends State<_TaxonList> {
   @override
   Widget build(BuildContext context) {
     final state = widget.state;
-    final showFooter = state.isLoadingMore;
+    final showFooter = state.isLoadingMore || state.loadMoreError != null;
 
     return ListView.separated(
       controller: _controller,
@@ -90,6 +90,12 @@ class _TaxonListState extends State<_TaxonList> {
       separatorBuilder: (_, _) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
         if (index >= state.items.length) {
+          if (state.loadMoreError != null) {
+            return LoadErrorView(
+              error: state.loadMoreError!,
+              onRetry: () => context.read<TaxonListCubit>().fetchNextPage(),
+            );
+          }
           return const Padding(
             padding: EdgeInsets.all(16),
             child: Center(child: CircularProgressIndicator()),
