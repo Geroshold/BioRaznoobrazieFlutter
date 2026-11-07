@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:my_catalog/common/network/load_exception.dart';
 import 'package:my_catalog/features/taxon/data/dto/taxon_dto.dart';
 import 'package:my_catalog/features/taxon/data/dto/taxon_page_dto.dart';
 
@@ -37,7 +36,7 @@ final class TaxonApi {
   }
 
   Future<TaxonDto> getTaxon(int id) async =>
-    TaxonDto.fromJson(await _getJson('/species/$id', queryParameters: {'verbose': 'true'}));
+    TaxonDto.fromJson(await _getJson('/species/$id'));
 
   Future<TaxonPageDto> getTaxonChildrenPage({
     required int parentKey,
