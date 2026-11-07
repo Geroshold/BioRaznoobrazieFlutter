@@ -5,7 +5,7 @@ import 'package:my_catalog/features/taxon/presentation/cubit/detail/taxon_detail
 
 class TaxonDetailCubit extends Cubit<TaxonDetailState> {
   TaxonDetailCubit(this._repository, this.key)
-      : super(const TaxonDetailLoading());
+    : super(const TaxonDetailLoading());
 
   final ITaxonRepository _repository;
   final int key;

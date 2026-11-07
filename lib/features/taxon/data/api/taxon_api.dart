@@ -36,7 +36,7 @@ final class TaxonApi {
   }
 
   Future<TaxonDto> getTaxon(int id) async =>
-    TaxonDto.fromJson(await _getJson('/species/$id'));
+      TaxonDto.fromJson(await _getJson('/species/$id'));
 
   Future<TaxonPageDto> getTaxonChildrenPage({
     required int parentKey,
@@ -52,13 +52,13 @@ final class TaxonApi {
 
   Future<Map<String, dynamic>> _getJson(
     String path, {
-      Map<String, Object>? queryParameters,
-    }) async {
-      final response = await _dio.get<Map<String, dynamic>>(
-        path,
-        queryParameters: queryParameters,
-      );
-      return response.data ?? (throw const FormatException('Пустой ответ'));
+    Map<String, Object>? queryParameters,
+  }) async {
+    final response = await _dio.get<Map<String, dynamic>>(
+      path,
+      queryParameters: queryParameters,
+    );
+    return response.data ?? (throw const FormatException('Пустой ответ'));
   }
 
   Future<List<DescriptionDto>> getTaxonDescriptions(int key) async {
@@ -66,12 +66,12 @@ final class TaxonApi {
       '/species/$key/descriptions',
       queryParameters: {'limit': 20},
     );
-  
+
     final results = json['results'];
     if (results is! List) return [];
-  
+
     return results
-      .map((e) => DescriptionDto.fromJson(e as Map<String, dynamic>))
-      .toList();
-}
+        .map((e) => DescriptionDto.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
 }

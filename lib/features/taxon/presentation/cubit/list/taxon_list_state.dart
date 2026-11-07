@@ -17,7 +17,7 @@ final class TaxonListLoaded extends TaxonListState {
     this.isLoadingMore = false,
     this.hasReachedMax = false,
     this.loadMoreError,
-    });
+  });
 
   final List<TaxonModel> items;
   final bool isLoadingMore;

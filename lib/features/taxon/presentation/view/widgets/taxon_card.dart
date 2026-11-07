@@ -26,24 +26,28 @@ class TaxonCard extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.taxonNumber(taxon.displayNumber),
-                style: theme.textTheme.labelMedium?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.taxonNumber(taxon.displayNumber),
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 6),
-              Text(taxon.displayName, style: theme.textTheme.titleMedium),
-              const SizedBox(height: 6),
-              RankChip(label: taxon.rank.label(l10n), color: taxon.rank.color, onColor: taxon.rank.onColor),
-            ],
+                const SizedBox(height: 6),
+                Text(taxon.displayName, style: theme.textTheme.titleMedium),
+                const SizedBox(height: 6),
+                RankChip(
+                  label: taxon.rank.label(l10n),
+                  color: taxon.rank.color,
+                  onColor: taxon.rank.onColor,
+                ),
+              ],
+            ),
           ),
-        ),
         ],
-      )
+      ),
     );
   }
 }

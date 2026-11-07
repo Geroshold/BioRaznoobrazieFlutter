@@ -14,7 +14,7 @@ class TaxonPageDto {
   });
 
   factory TaxonPageDto.fromJson(Map<String, dynamic> json) =>
-    _$TaxonPageDtoFromJson(json);
+      _$TaxonPageDtoFromJson(json);
 
   final int offset;
 

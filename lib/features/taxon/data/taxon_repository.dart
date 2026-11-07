@@ -15,7 +15,10 @@ final class TaxonRepository implements ITaxonRepository {
     required int offset,
     required int limit,
   }) async {
-    final page = await _dataSource.searchTaxonPage(offset: offset, limit: limit);
+    final page = await _dataSource.searchTaxonPage(
+      offset: offset,
+      limit: limit,
+    );
     final models = page.results.map((dto) => dto.toModel()).toList();
     return models;
   }
@@ -32,12 +35,12 @@ final class TaxonRepository implements ITaxonRepository {
         final firstDesc = descriptions.first.description;
         if (firstDesc != null) {
           description = stripHtml(firstDesc);
-    }
-  }
+        }
+      }
     } on LoadException {}
 
-  return model.copyWith(description: description);
-}
+    return model.copyWith(description: description);
+  }
 
   @override
   Future<List<TaxonModel>> getChildren(int parentKey) async {

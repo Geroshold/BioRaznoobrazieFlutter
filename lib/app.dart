@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/locale/locale_cubit.dart';
@@ -22,10 +23,8 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider<ITaxonRepository>(
           create: (_) => TaxonRepository(
-            NetworkTaxonDataSource(
-              TaxonApi(DioClient.create()),
-            )
-          )
+            NetworkTaxonDataSource(TaxonApi(DioClient.create())),
+          ),
         ),
       ],
       child: MultiBlocProvider(

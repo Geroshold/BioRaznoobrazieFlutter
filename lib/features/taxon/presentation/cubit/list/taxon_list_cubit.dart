@@ -6,8 +6,8 @@ import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_state.dart';
 
 class TaxonListCubit extends Cubit<TaxonListState> {
-  TaxonListCubit(this._repository, {this.parentKey}) 
-  : super(const TaxonListLoading(query: ''));
+  TaxonListCubit(this._repository, {this.parentKey})
+    : super(const TaxonListLoading(query: ''));
 
   final ITaxonRepository _repository;
   final int? parentKey;
@@ -26,8 +26,8 @@ class TaxonListCubit extends Cubit<TaxonListState> {
 
       final reachedMax = parentKey != null || items.length < _limit;
 
-      emit(TaxonListLoaded(query: '', items: items, hasReachedMax: reachedMax,));
-    } on LoadException catch(error) {
+      emit(TaxonListLoaded(query: '', items: items, hasReachedMax: reachedMax));
+    } on LoadException catch (error) {
       if (isClosed) return;
       emit(TaxonListFailure(query: state.query, error: error));
     }
@@ -40,7 +40,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
       try {
         final items = await _repository.search(query, parentKey: parentKey);
         if (isClosed) return;
-        emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true,));
+        emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true));
       } on LoadException catch (error) {
         if (isClosed) return;
         emit(TaxonListFailure(query: query, error: error));
@@ -59,7 +59,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
       if (isClosed) return;
       if (items == null) return;
 
-      emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true,));
+      emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true));
     } on LoadException catch (error) {
       if (isClosed) return;
       emit(TaxonListFailure(query: query, error: error));
@@ -68,8 +68,8 @@ class TaxonListCubit extends Cubit<TaxonListState> {
 
   Future<void> fetchNextPage() async {
     final currentState = state;
-    if (currentState is! TaxonListLoaded || 
-        currentState.isLoadingMore || 
+    if (currentState is! TaxonListLoaded ||
+        currentState.isLoadingMore ||
         currentState.hasReachedMax ||
         currentState.query.isNotEmpty ||
         parentKey != null) {
@@ -83,21 +83,23 @@ class TaxonListCubit extends Cubit<TaxonListState> {
         offset: currentState.items.length,
         limit: _limit,
       );
-      
+
       if (isClosed) return;
 
       if (nextItems.isEmpty) {
         emit(currentState.copyWith(isLoadingMore: false, hasReachedMax: true));
       } else {
-        emit(currentState.copyWith(
-          items: [...currentState.items, ...nextItems],
-          isLoadingMore: false,
-          hasReachedMax: nextItems.length < _limit,
-        ));
+        emit(
+          currentState.copyWith(
+            items: [...currentState.items, ...nextItems],
+            isLoadingMore: false,
+            hasReachedMax: nextItems.length < _limit,
+          ),
+        );
       }
     } on LoadException catch (error) {
       if (isClosed) return;
-      emit(currentState.copyWith(isLoadingMore: false, loadMoreError: error)); 
+      emit(currentState.copyWith(isLoadingMore: false, loadMoreError: error));
     }
   }
 }

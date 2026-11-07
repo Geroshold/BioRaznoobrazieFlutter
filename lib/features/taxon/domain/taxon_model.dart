@@ -24,14 +24,14 @@ final class TaxonModel {
   final String? description;
 
   TaxonModel copyWith({String? description}) => TaxonModel(
-  key: key,
-  scientificName: scientificName,
-  canonicalName: canonicalName,
-  rank: rank,
-  parentKey: parentKey,
-  numDescendants: numDescendants,
-  kingdom: kingdom,
-  phylum: phylum,
-  description: description ?? this.description,
-);
+    key: key,
+    scientificName: scientificName,
+    canonicalName: canonicalName,
+    rank: rank,
+    parentKey: parentKey,
+    numDescendants: numDescendants,
+    kingdom: kingdom,
+    phylum: phylum,
+    description: description ?? this.description,
+  );
 }

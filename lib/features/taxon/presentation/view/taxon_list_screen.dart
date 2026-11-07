@@ -15,7 +15,7 @@ class TaxonListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final cubit = context.read<TaxonListCubit>();
-    
+
     return AppScaffold(
       body: Column(
         children: [
@@ -27,13 +27,12 @@ class TaxonListScreen extends StatelessWidget {
           ),
           Expanded(
             child: BlocBuilder<TaxonListCubit, TaxonListState>(
-              builder: (context, state) => switch(state) {
-                TaxonListLoading() => const Center(child: CircularProgressIndicator()),
+              builder: (context, state) => switch (state) {
+                TaxonListLoading() => const Center(
+                  child: CircularProgressIndicator(),
+                ),
                 TaxonListFailure(:final error) => Center(
-                  child: LoadErrorView(
-                    error: error,
-                    onRetry: cubit.load,
-                  ),
+                  child: LoadErrorView(error: error, onRetry: cubit.load),
                 ),
                 TaxonListLoaded(:final items) when items.isEmpty => Center(
                   child: Text(l10n.searchEmpty),

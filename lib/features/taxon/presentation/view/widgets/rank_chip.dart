@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class RankChip extends StatelessWidget {
-  const RankChip({super.key, required this.label, required this.color, required this.onColor});
+  const RankChip({
+    super.key,
+    required this.label,
+    required this.color,
+    required this.onColor,
+  });
 
   final String label;
   final Color color;

@@ -4,11 +4,11 @@ import 'package:my_catalog/features/taxon/domain/taxon_rank.dart';
 
 extension TaxonDtoMapper on TaxonDto {
   TaxonModel toModel() => TaxonModel(
-    key: key, 
+    key: key,
     scientificName: scientificName,
     canonicalName: canonicalName,
     rank: _parseTaxonRank(rank),
-    parentKey: parentKey, 
+    parentKey: parentKey,
     numDescendants: numDescendants,
     kingdom: kingdom,
     phylum: phylum,

@@ -17,22 +17,29 @@ final class NetworkTaxonDataSource implements ITaxonDataSource {
     int? highertaxonKey,
     required int offset,
     required int limit,
-  }) => _guard(() => _api.searchTaxonPage(query: query, offset: offset, limit: limit));
+  }) => _guard(
+    () => _api.searchTaxonPage(query: query, offset: offset, limit: limit),
+  );
 
   @override
-  Future<TaxonDto> getTaxon(int id) =>
-      _guard(() => _api.getTaxon(id));
+  Future<TaxonDto> getTaxon(int id) => _guard(() => _api.getTaxon(id));
 
   @override
   Future<TaxonPageDto> getTaxonChildrenPage({
     required int parentKey,
     required int offset,
     required int limit,
-  }) => _guard(() => _api.getTaxonChildrenPage(parentKey: parentKey, offset: offset, limit: limit));
+  }) => _guard(
+    () => _api.getTaxonChildrenPage(
+      parentKey: parentKey,
+      offset: offset,
+      limit: limit,
+    ),
+  );
 
   @override
   Future<List<DescriptionDto>> getTaxonDescriptions(int key) =>
-    _guard(() => _api.getTaxonDescriptions(key));
+      _guard(() => _api.getTaxonDescriptions(key));
 
   Future<T> _guard<T>(Future<T> Function() request) async {
     try {

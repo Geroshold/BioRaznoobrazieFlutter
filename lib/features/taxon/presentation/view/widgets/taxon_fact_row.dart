@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaxonFactRow extends StatelessWidget {
-  const TaxonFactRow({
-    super.key,
-    required this.label,
-    required this.value,
-  });
+  const TaxonFactRow({super.key, required this.label, required this.value});
 
   final String label;
   final String value;
@@ -31,10 +27,7 @@ class TaxonFactRow extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             flex: 2,
-            child: Text(
-              value,
-              style: theme.textTheme.bodyMedium,
-            ),
+            child: Text(value, style: theme.textTheme.bodyMedium),
           ),
         ],
       ),
