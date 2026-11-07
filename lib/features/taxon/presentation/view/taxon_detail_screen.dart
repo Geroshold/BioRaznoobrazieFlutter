@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/widgets/app_scaffold.dart';
+import 'package:my_catalog/common/widgets/load_error_view.dart';
 import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 import 'package:my_catalog/features/taxon/presentation/view/widgets/section.dart';
 import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
@@ -22,10 +23,8 @@ class TaxonDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TaxonDetailCubit(
-        context.read<ITaxonRepository>(),
-        taxonKey,
-      )..load(),
+      create: (context) =>
+          TaxonDetailCubit(context.read<ITaxonRepository>(), taxonKey)..load(),
       child: AppScaffold(
         body: BlocBuilder<TaxonDetailCubit, TaxonDetailState>(
           builder: (context, state) => switch (state) {
@@ -35,8 +34,13 @@ class TaxonDetailScreen extends StatelessWidget {
             TaxonDetailNotFound() => Center(
               child: Text(AppLocalizations.of(context).detailNotFound),
             ),
-            TaxonDetailLoaded(:final taxon) =>
-              _DetailContent(taxon: taxon),
+            TaxonDetailFailure(:final error) => Center(
+              child: LoadErrorView(
+                error: error,
+                onRetry: () => context.read<TaxonDetailCubit>().load(),
+              ),
+            ),
+            TaxonDetailLoaded(:final taxon) => _DetailContent(taxon: taxon),
           },
         ),
       ),
@@ -78,7 +82,7 @@ class _DetailContent extends StatelessWidget {
               RankChip(
                 label: taxon.rank.label(l10n),
                 color: taxon.rank.color,
-                onColor: taxon.rank.onColor
+                onColor: taxon.rank.onColor,
               ),
 
               const SizedBox(height: 16),
@@ -95,17 +99,15 @@ class _DetailContent extends StatelessWidget {
 
               if (taxon.description != null) ...[
                 Section(title: l10n.sectionDescription),
-                Text(
-                  taxon.description!,
-                  style: theme.textTheme.bodyLarge,
-                ),
+                Text(taxon.description!, style: theme.textTheme.bodyLarge),
               ],
 
               if (hasChildren) ...[
                 const SizedBox(height: 24),
                 Center(
                   child: FilledButton(
-                    onPressed: () => context.push(AppRoutes.children(taxon.key)),
+                    onPressed: () =>
+                        context.push(AppRoutes.children(taxon.key)),
                     child: Text(l10n.sectionChildren),
                   ),
                 ),

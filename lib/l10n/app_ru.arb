@@ -21,5 +21,11 @@
   "childrenEmpty": "Дочерних таксонов нет",
   "searchHint": "Поиск по имени",
   "actionClearSearch": "Очистить поиск",
-  "searchEmpty" : "Ничего не найдено"
+  "searchEmpty" : "Ничего не найдено",
+  "errorNoConnection": "Нет связи с сервером. Проверьте интернет",
+  "errorTimeout": "Сервер долго не отвечает",
+  "errorNotFound": "Такой записи нет",
+  "errorServer": "Ошибка сервера ({code})",
+  "errorBadResponse": "Сервер прислал непонятный ответ",
+  "actionRetry": "Повторить"
 }
