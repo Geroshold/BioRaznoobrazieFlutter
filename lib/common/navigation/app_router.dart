@@ -13,7 +13,6 @@ abstract final class AppRoutes {
 }
 
 abstract final class AppRouter {
-  
   static const Duration _transition = Duration(milliseconds: 300);
 
   static final GoRouter router = _create();

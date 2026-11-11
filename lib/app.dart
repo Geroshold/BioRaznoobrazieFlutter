@@ -1,11 +1,15 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/locale/locale_cubit.dart';
 import 'package:my_catalog/common/navigation/app_router.dart';
 import 'package:my_catalog/common/theme/app_theme.dart';
 import 'package:my_catalog/common/theme/theme_cubit.dart';
+import 'package:my_catalog/common/network/dio_client.dart';
 import 'package:my_catalog/features/taxon/data/taxon_repository.dart';
+import 'package:my_catalog/features/taxon/data/api/taxon_api.dart';
+import 'package:my_catalog/features/taxon/data/data_sources/network_taxon_data_source.dart';
 import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_cubit.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
@@ -18,7 +22,9 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<ITaxonRepository>(
-          create: (_) => const TaxonRepository(),
+          create: (_) => TaxonRepository(
+            NetworkTaxonDataSource(TaxonApi(DioClient.create())),
+          ),
         ),
       ],
       child: MultiBlocProvider(
