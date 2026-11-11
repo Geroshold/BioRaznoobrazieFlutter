@@ -30,13 +30,16 @@ final class TaxonListLoaded extends TaxonListState {
     bool? isLoadingMore,
     bool? hasReachedMax,
     LoadException? loadMoreError,
+    bool clearLoadMoreError = false,
   }) {
     return TaxonListLoaded(
       query: query ?? this.query,
       items: items ?? this.items,
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
-      loadMoreError: loadMoreError ?? this.loadMoreError,
+      loadMoreError: clearLoadMoreError
+          ? null
+          : (loadMoreError ?? this.loadMoreError),
     );
   }
 }

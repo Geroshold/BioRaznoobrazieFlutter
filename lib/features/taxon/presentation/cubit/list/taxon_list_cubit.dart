@@ -77,7 +77,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
 
     final loading = currentState.copyWith(
       isLoadingMore: true,
-      loadMoreError: null,
+      clearLoadMoreError: true,
     );
     emit(loading);
 
