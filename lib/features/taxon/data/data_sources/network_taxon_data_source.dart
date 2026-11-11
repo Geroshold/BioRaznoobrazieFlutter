@@ -18,7 +18,12 @@ final class NetworkTaxonDataSource implements ITaxonDataSource {
     required int offset,
     required int limit,
   }) => _guard(
-    () => _api.searchTaxonPage(query: query, offset: offset, limit: limit),
+    () => _api.searchTaxonPage(
+      query: query,
+      highertaxonKey: highertaxonKey,
+      offset: offset,
+      limit: limit,
+    ),
   );
 
   @override

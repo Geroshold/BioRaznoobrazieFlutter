@@ -17,6 +17,7 @@ final class TaxonApi {
       '/species/search',
       queryParameters: {
         if (query != null && query.isNotEmpty) 'q': query,
+        if (highertaxonKey != null) 'highertaxonKey': highertaxonKey,
         'offset': offset,
         'limit': limit,
       },

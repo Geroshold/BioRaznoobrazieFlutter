@@ -20,7 +20,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
 
     try {
       final items = parentKey == null
-          ? await _repository.getTaxons(offset: 0, limit: 20)
+          ? await _repository.getTaxons(offset: 0, limit: _limit)
           : await _repository.getChildren(parentKey!);
       if (isClosed) return;
 
@@ -34,6 +34,10 @@ class TaxonListCubit extends Cubit<TaxonListState> {
   }
 
   Future<void> search(String query) async {
+    if (query.isEmpty) {
+      await load();
+      return;
+    }
     final current = state;
     if (current is! TaxonListLoaded) {
       emit(TaxonListLoading(query: query));
