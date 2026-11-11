@@ -12,12 +12,20 @@ class TaxonListCubit extends Cubit<TaxonListState> {
   final ITaxonRepository _repository;
   final int? parentKey;
 
-  CancelableOperation<List<TaxonModel>>? _searchOperation;
+  CancelableOperation<void>? _operation;
+
   final int _limit = 20;
 
   Future<void> load() async {
+    _operation?.cancel();
+
     emit(TaxonListLoading(query: state.query));
 
+    _operation = CancelableOperation.fromFuture(_loadData());
+    await _operation!.valueOrCancellation();
+  }
+
+  Future<void> _loadData() async {
     try {
       final items = parentKey == null
           ? await _repository.getTaxons(offset: 0, limit: _limit)
@@ -38,30 +46,17 @@ class TaxonListCubit extends Cubit<TaxonListState> {
       await load();
       return;
     }
-    final current = state;
-    if (current is! TaxonListLoaded) {
-      emit(TaxonListLoading(query: query));
-      try {
-        final items = await _repository.search(query, parentKey: parentKey);
-        if (isClosed) return;
-        emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true));
-      } on LoadException catch (error) {
-        if (isClosed) return;
-        emit(TaxonListFailure(query: query, error: error));
-      }
-      return;
-    }
 
-    emit(current.copyWith(query: query));
-    _searchOperation?.cancel();
-    _searchOperation = CancelableOperation.fromFuture(
-      _repository.search(query, parentKey: parentKey),
-    );
+    _operation?.cancel();
+    emit(TaxonListLoading(query: query));
+    _operation = CancelableOperation.fromFuture(_searchData(query));
+    await _operation!.valueOrCancellation();
+  }
 
+  Future<void> _searchData(String query) async {
     try {
-      final items = await _searchOperation!.valueOrCancellation();
+      final items = await _repository.search(query, parentKey: parentKey);
       if (isClosed) return;
-      if (items == null) return;
 
       emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true));
     } on LoadException catch (error) {
