@@ -3,7 +3,7 @@ import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/common/network/load_exception.dart';
 import 'package:my_catalog/features/taxon/data/mappers/taxon_mapper.dart';
 import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
-import 'package:my_catalog/features/taxon/presentation/utils/html_util.dart';
+import 'package:my_catalog/features/taxon/data/utils/html_util.dart';
 
 final class TaxonRepository implements ITaxonRepository {
   const TaxonRepository(this._dataSource);
