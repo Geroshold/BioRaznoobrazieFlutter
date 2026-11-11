@@ -5,7 +5,7 @@ import 'package:my_catalog/l10n/app_localizations.dart';
 extension TaxonFormat on TaxonModel {
   String get displayName => _capitalize(scientificName);
   String displayCanonicalName(AppLocalizations l10n) =>
-    canonicalName != null ? _capitalize(canonicalName!) : l10n.notSpecified;
+      canonicalName != null ? _capitalize(canonicalName!) : l10n.notSpecified;
   String get displayNumber => key.toString().padLeft(3, '0');
 }
 

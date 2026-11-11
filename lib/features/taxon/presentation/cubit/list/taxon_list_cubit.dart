@@ -25,6 +25,14 @@ class TaxonListCubit extends Cubit<TaxonListState> {
     await _operation!.valueOrCancellation();
   }
 
+  Future<void> retry() async {
+    if (state.query.isNotEmpty) {
+      await search(state.query);
+    } else {
+      await load();
+    }
+  }
+
   Future<void> _loadData() async {
     try {
       final items = parentKey == null

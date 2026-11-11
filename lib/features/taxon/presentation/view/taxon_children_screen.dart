@@ -49,7 +49,7 @@ class _TaxonChildrenBody extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 ),
                 TaxonListFailure(:final error) => Center(
-                  child: LoadErrorView(error: error, onRetry: cubit.load),
+                  child: LoadErrorView(error: error, onRetry: cubit.retry),
                 ),
                 TaxonListLoaded(:final items, :final query)
                     when items.isEmpty && query.isNotEmpty =>

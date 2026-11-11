@@ -31,11 +31,9 @@ final class TaxonRepository implements ITaxonRepository {
     var description = model.description;
     try {
       final descriptions = await _dataSource.getTaxonDescriptions(key);
-      if (descriptions.isNotEmpty) {
-        final firstDesc = descriptions.first.description;
-        if (firstDesc != null) {
-          description = stripHtml(firstDesc);
-        }
+      if (descriptions.isNotEmpty &&
+          descriptions.first.description.isNotEmpty) {
+        description = stripHtml(descriptions.first.description);
       }
     } on LoadException {}
 

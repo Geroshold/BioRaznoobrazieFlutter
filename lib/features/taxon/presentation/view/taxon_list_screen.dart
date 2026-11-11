@@ -32,7 +32,7 @@ class TaxonListScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 ),
                 TaxonListFailure(:final error) => Center(
-                  child: LoadErrorView(error: error, onRetry: cubit.load),
+                  child: LoadErrorView(error: error, onRetry: cubit.retry),
                 ),
                 TaxonListLoaded(:final items) when items.isEmpty => Center(
                   child: Text(l10n.searchEmpty),
