@@ -6,16 +6,23 @@ part of 'taxon_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TaxonDto _$TaxonDtoFromJson(Map<String, dynamic> json) => TaxonDto(
-  key: (json['key'] as num).toInt(),
-  scientificName: json['scientificName'] as String,
-  canonicalName: json['canonicalName'] as String?,
-  rank: json['rank'] as String,
-  parentKey: (json['parentKey'] as num?)?.toInt(),
-  numDescendants: (json['numDescendants'] as num).toInt(),
-  kingdom: json['kingdom'] as String?,
-  phylum: json['phylum'] as String?,
-);
+TaxonDto _$TaxonDtoFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('TaxonDto', json, ($checkedConvert) {
+      final val = TaxonDto(
+        key: $checkedConvert('key', (v) => (v as num).toInt()),
+        scientificName: $checkedConvert('scientificName', (v) => v as String),
+        canonicalName: $checkedConvert('canonicalName', (v) => v as String?),
+        rank: $checkedConvert('rank', (v) => v as String),
+        parentKey: $checkedConvert('parentKey', (v) => (v as num?)?.toInt()),
+        numDescendants: $checkedConvert(
+          'numDescendants',
+          (v) => (v as num).toInt(),
+        ),
+        kingdom: $checkedConvert('kingdom', (v) => v as String?),
+        phylum: $checkedConvert('phylum', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$TaxonDtoToJson(TaxonDto instance) => <String, dynamic>{
   'key': instance.key,
@@ -29,7 +36,12 @@ Map<String, dynamic> _$TaxonDtoToJson(TaxonDto instance) => <String, dynamic>{
 };
 
 DescriptionDto _$DescriptionDtoFromJson(Map<String, dynamic> json) =>
-    DescriptionDto(description: json['description'] as String);
+    $checkedCreate('DescriptionDto', json, ($checkedConvert) {
+      final val = DescriptionDto(
+        description: $checkedConvert('description', (v) => v as String),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$DescriptionDtoToJson(DescriptionDto instance) =>
     <String, dynamic>{'description': instance.description};
