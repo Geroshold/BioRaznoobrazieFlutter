@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/app.dart';
 import 'package:my_catalog/common/theme/app_colors.dart';
 import 'package:my_catalog/features/taxon/domain/taxon_rank.dart';
 import 'package:my_catalog/l10n/app_localizations.dart';
@@ -12,6 +13,7 @@ extension TaxonRankFormat on TaxonRank {
     TaxonRank.family => l10n.rankFamily,
     TaxonRank.genus => l10n.rankGenus,
     TaxonRank.species => l10n.rankSpecies,
+    TaxonRank.unknown => l10n.rankUnknown,
   };
 
   Color get color => switch (this) {
@@ -22,6 +24,7 @@ extension TaxonRankFormat on TaxonRank {
     TaxonRank.family => AppColors.rankFamilyBg,
     TaxonRank.genus => AppColors.rankGenusBg,
     TaxonRank.species => AppColors.rankSpeciesBg,
+    TaxonRank.unknown => AppColors.rankUnknownBg,
   };
 
   Color get onColor => switch (this) {
@@ -32,5 +35,6 @@ extension TaxonRankFormat on TaxonRank {
     TaxonRank.family => AppColors.rankFamilyFg,
     TaxonRank.genus => AppColors.rankGenusFg,
     TaxonRank.species => AppColors.rankSpeciesFg,
+    TaxonRank.unknown => AppColors.rankUnknownFg,
   };
 }

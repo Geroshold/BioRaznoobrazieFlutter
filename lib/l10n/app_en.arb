@@ -12,6 +12,7 @@
   "rankFamily" : "Family",
   "rankGenus" : "Genus",
   "rankSpecies" : "Species",
+  "rankUnknown" : "Unknown",
   "sectionDescription" : "Description",
   "sectionChildren" : "Children",
   "detailNotFound" : "This taxon was not found",

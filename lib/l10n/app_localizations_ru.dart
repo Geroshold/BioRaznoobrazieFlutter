@@ -48,6 +48,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get rankSpecies => 'Вид';
 
   @override
+  String get rankUnknown => 'Неизвестный';
+
+  @override
   String get sectionDescription => 'Описание';
 
   @override

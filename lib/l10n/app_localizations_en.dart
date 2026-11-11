@@ -48,6 +48,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rankSpecies => 'Species';
 
   @override
+  String get rankUnknown => 'Unknown';
+
+  @override
   String get sectionDescription => 'Description';
 
   @override

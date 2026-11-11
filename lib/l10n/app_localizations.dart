@@ -170,6 +170,12 @@ abstract class AppLocalizations {
   /// **'Вид'**
   String get rankSpecies;
 
+  /// No description provided for @rankUnknown.
+  ///
+  /// In ru, this message translates to:
+  /// **'Неизвестный'**
+  String get rankUnknown;
+
   /// No description provided for @sectionDescription.
   ///
   /// In ru, this message translates to:

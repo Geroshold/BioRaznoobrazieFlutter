@@ -12,6 +12,7 @@
   "rankFamily" : "Семейство",
   "rankGenus" : "Род",
   "rankSpecies" : "Вид",
+  "rankUnknown" : "Неизвестный",
   "sectionDescription": "Описание",
   "sectionChildren": "Дочерние таксоны",
   "detailNotFound" : "Таксон не был найден",

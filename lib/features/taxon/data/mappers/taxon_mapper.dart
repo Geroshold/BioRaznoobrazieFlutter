@@ -16,7 +16,13 @@ extension TaxonDtoMapper on TaxonDto {
   );
 }
 
-TaxonRank _parseTaxonRank(String raw) => TaxonRank.values.firstWhere(
-  (r) => r.name.toUpperCase() == raw.toUpperCase(),
-  orElse: () => TaxonRank.species,
-);
+TaxonRank _parseTaxonRank(String raw) => switch (raw.toUpperCase()) {
+  'KINGDOM' => TaxonRank.kingdom,
+  'PHYLUM' => TaxonRank.phylum,
+  'CLASS' => TaxonRank.klass,
+  'ORDER' => TaxonRank.order,
+  'FAMILY' => TaxonRank.family,
+  'GENUS' => TaxonRank.genus,
+  'SPECIES' => TaxonRank.species,
+  _ => TaxonRank.unknown,
+};
