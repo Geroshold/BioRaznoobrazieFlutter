@@ -96,4 +96,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get actionRetry => 'Повторить';
+
+  @override
+  String get notSpecified => 'Не указано';
 }

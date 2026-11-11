@@ -265,6 +265,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Повторить'**
   String get actionRetry;
+
+  /// No description provided for @notSpecified.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не указано'**
+  String get notSpecified;
 }
 
 class _AppLocalizationsDelegate

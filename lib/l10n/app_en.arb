@@ -27,5 +27,6 @@
   "errorNotFound": "This record does not exist",
   "errorServer": "Server error ({code})",
   "errorBadResponse": "The server sent an unexpected response",
-  "actionRetry": "Retry"
+  "actionRetry": "Retry",
+  "notSpecified": "Not specified"
 }

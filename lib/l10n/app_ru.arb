@@ -27,5 +27,6 @@
   "errorNotFound": "Такой записи нет",
   "errorServer": "Ошибка сервера ({code})",
   "errorBadResponse": "Сервер прислал непонятный ответ",
-  "actionRetry": "Повторить"
+  "actionRetry": "Повторить",
+  "notSpecified": "Не указано"
 }
