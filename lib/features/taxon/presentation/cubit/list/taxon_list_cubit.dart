@@ -1,7 +1,5 @@
-import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_catalog/common/network/load_exception.dart';
-import 'package:my_catalog/features/taxon/domain/taxon_model.dart';
 import 'package:my_catalog/features/taxon/domain/i_taxon_repository.dart';
 import 'package:my_catalog/features/taxon/presentation/cubit/list/taxon_list_state.dart';
 
@@ -12,17 +10,25 @@ class TaxonListCubit extends Cubit<TaxonListState> {
   final ITaxonRepository _repository;
   final int? parentKey;
 
-  CancelableOperation<void>? _operation;
-
   final int _limit = 20;
 
   Future<void> load() async {
-    _operation?.cancel();
+    final loading = TaxonListLoading(query: '');
+    emit(loading);
 
-    emit(TaxonListLoading(query: state.query));
+    try {
+      final items = parentKey == null
+          ? await _repository.getTaxons(offset: 0, limit: _limit)
+          : await _repository.getChildren(parentKey!);
+      if (isClosed || !identical(state, loading)) return;
 
-    _operation = CancelableOperation.fromFuture(_loadData());
-    await _operation!.valueOrCancellation();
+      final reachedMax = parentKey != null || items.length < _limit;
+
+      emit(TaxonListLoaded(query: '', items: items, hasReachedMax: reachedMax));
+    } on LoadException catch (error) {
+      if (isClosed || !identical(state, loading)) return;
+      emit(TaxonListFailure(query: '', error: error));
+    }
   }
 
   Future<void> retry() async {
@@ -33,42 +39,22 @@ class TaxonListCubit extends Cubit<TaxonListState> {
     }
   }
 
-  Future<void> _loadData() async {
-    try {
-      final items = parentKey == null
-          ? await _repository.getTaxons(offset: 0, limit: _limit)
-          : await _repository.getChildren(parentKey!);
-      if (isClosed) return;
-
-      final reachedMax = parentKey != null || items.length < _limit;
-
-      emit(TaxonListLoaded(query: '', items: items, hasReachedMax: reachedMax));
-    } on LoadException catch (error) {
-      if (isClosed) return;
-      emit(TaxonListFailure(query: state.query, error: error));
-    }
-  }
-
   Future<void> search(String query) async {
     if (query.isEmpty) {
       await load();
       return;
     }
 
-    _operation?.cancel();
-    emit(TaxonListLoading(query: query));
-    _operation = CancelableOperation.fromFuture(_searchData(query));
-    await _operation!.valueOrCancellation();
-  }
+    final loading = TaxonListLoading(query: query);
+    emit(loading);
 
-  Future<void> _searchData(String query) async {
     try {
       final items = await _repository.search(query, parentKey: parentKey);
-      if (isClosed) return;
+      if (isClosed || !identical(state, loading)) return;
 
       emit(TaxonListLoaded(query: query, items: items, hasReachedMax: true));
     } on LoadException catch (error) {
-      if (isClosed) return;
+      if (isClosed || !identical(state, loading)) return;
       emit(TaxonListFailure(query: query, error: error));
     }
   }
@@ -95,9 +81,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
         limit: _limit,
       );
 
-      if (isClosed) return;
-
-      if (!identical(state, loading)) return;
+      if (isClosed || !identical(state, loading)) return;
 
       if (nextItems.isEmpty) {
         emit(currentState.copyWith(isLoadingMore: false, hasReachedMax: true));
@@ -111,8 +95,7 @@ class TaxonListCubit extends Cubit<TaxonListState> {
         );
       }
     } on LoadException catch (error) {
-      if (isClosed) return;
-      if (!identical(state, loading)) return;
+      if (isClosed || !identical(state, loading)) return;
       emit(currentState.copyWith(isLoadingMore: false, loadMoreError: error));
     }
   }
