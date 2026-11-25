@@ -14,9 +14,11 @@ class AppScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).appTitle),
-        actions: [...actions, 
-        const LocaleToggleButton(),
-        const ThemeToggleButton(),],
+        actions: [
+          ...actions,
+          const LocaleToggleButton(),
+          const ThemeToggleButton(),
+        ],
       ),
       body: body,
     );

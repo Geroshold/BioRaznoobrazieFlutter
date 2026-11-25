@@ -23,4 +23,7 @@ abstract final class AppColors {
 
   static const Color rankSpeciesBg = Color(0xFFEF6C00);
   static const Color rankSpeciesFg = Colors.white;
+
+  static const Color rankUnknownBg = Colors.grey;
+  static const Color rankUnknownFg = Colors.white;
 }
